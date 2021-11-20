@@ -13,15 +13,16 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::view('/recipes','recipes');
 Route::view('/image','image');
 Route::view('/all','all');
 
 Route::POST("userscon",[UserController::class,'getData']);
+Route::get("/",[UserController::class,'create']);
 
 
 

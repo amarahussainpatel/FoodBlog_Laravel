@@ -71,20 +71,28 @@
       </div>
     </div>
 
-    <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+    <div>
+      
+        {{-- {{ $photo->PicturePath }} --}}
+        {{-- <li>{{ $photo->PicturePath}}
+          <img src={{ asset("storage/images/$photo->PicturePath"); }} >
+        </li> --}}
+    </div>
 
+    <div class="container-fluid" data-aos="fade-up" data-aos-delay="100"> 
       <div class="row g-0">
-
-        <div class="col-lg-3 col-md-4">
-          <div class="gallery-item">
-            <a href="../../storage/app/img/gal.jpg" class="gallery-lightbox" data-gall="gallery-item">
-              {{-- <img src="../../storage/app/img/gal.jpg" alt="" class="img-fluid"> --}}
-              <img src="{{ asset('/images/gal.jpg') }}" alt="" title="">
-            </a>
+        
+        @foreach($photos as $photo)
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href={{asset("storage/images/$photo->PicturePath");}} class="gallery-lightbox" data-gall="gallery-item">
+                <img src={{asset("storage/images/$photo->PicturePath");}} id="img-fluid" alt="" class="img-fluid" >
+              </a>
+            </div>
           </div>
-        </div>
+        @endforeach
 
-        <div class="col-lg-3 col-md-4">
+        {{-- <div class="col-lg-3 col-md-4">
           <div class="gallery-item">
             <a href="assets/img/gallery/gallery-2.jpg" class="gallery-lightbox" data-gall="gallery-item">
               <img src="assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
@@ -138,12 +146,13 @@
               <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
             </a>
           </div>
-        </div>
-
+        </div>  --}}
+         {{-- @endforeach --}}
       </div>
 
     </div>
   </section><!-- End Gallery Section -->
+  
 
   
   <!-- Vendor JS Files -->

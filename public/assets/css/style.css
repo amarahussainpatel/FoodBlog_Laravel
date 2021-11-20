@@ -1323,8 +1323,8 @@ section {
 --------------------------------------------------------------*/
 .gallery .gallery-item {
   overflow: hidden;
-  border-right: 3px solid #454035;
-  border-bottom: 3px solid #454035;
+  /* border-right: solid #454035;
+  border-bottom: 3px solid #454035; */
 }
 
 .gallery .gallery-item img {
@@ -1728,4 +1728,9 @@ section {
   text-align: center;
   font-size: 13px;
   color: #fff;
+}
+
+#img-fluid{
+  width: 400px;
+  height: 300px; 
 }

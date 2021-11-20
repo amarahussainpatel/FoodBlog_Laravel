@@ -17,12 +17,9 @@ class UserController extends Controller
             'email'=>'required',
             //'file' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
-        foreach($req->file('file') as $file){
-            $path= $file->store('img');
-        }
+    
         $cook = new Cook;
         $recipe = new Recipe;
-        $image = new Image;
         $recipe=new Recipe();
 
         $cook->CookName = $req -> name;
@@ -39,16 +36,28 @@ class UserController extends Controller
         $recid = Recipe::max('RecipeID');
         // $cover = $req->file('file');
         // $extension = $cover->getClientOriginalName();
-        $image -> CookID = $cookid;
-        $image -> RecipeID = $recid;
-        $image -> PicturePath = $path;
-        $image -> save(); 
-        return redirect('/');
+        foreach($req->file('file') as $file){
+            $image = new Image;
+            $image -> CookID = $cookid;
+            $image -> RecipeID = $recid;
+            $path= $file->store('public/images');
+            $path1=substr($path,14);
+            $image -> PicturePath = $path1;
+            $image -> save(); 
+        }
+         return redirect('/');
     }
 
-    function index(Request $req){
-        foreach($req->file('file') as $file){
-            echo $file->store('img');
-        }
+    // function index(Request $req){
+    //     $cookid = Cook::max('CookID');
+    //     foreach($req->file('file') as $file){
+    //         echo $file->store('public/images',$cookid);
+    //     }
+    // }
+
+    function create(){
+        $photo = Image::all();
+        //return view('welcome')
+        return view('welcome',['photos'=>$photo]);
     }
 }
